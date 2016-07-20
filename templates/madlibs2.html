@@ -1,18 +1,18 @@
-<!doctype html>
-<html>
-<head>
-  <title>Your Other Madlib Story</title>
-</head>
-<body>
-    Once upon a time, a {{ adjective }} princess named {{ person }} lived in a big, big castle<br>on top of a {{ color }} hill. She {{ verb }} when she saw: 
-    
-    <ul>
+{% extends 'base.html' %}
+{% block title %}Your Other Madlib Story{% endblock %}
 
-    {% for animal in animals %}
-        <li>{{ animal }}</li>
-    {% endfor %}
-
-    </ul>
-    
-</body>
-</html>
+{% block content %}
+    Once upon a time, a {{ adjective }} princess named {{ person }} lived in a big, big castle<br>on top of a {{ color }} hill. She {{ verb }} when she saw the
+    {% if animals.__len__() >= 3 %}
+        {% for animal in animals[:-1] %}
+            {{ animal }},
+        {% endfor %} 
+        and {{ animals[-1] }}.
+    {% endif %}
+    {% if animals.__len__() == 2 %}
+            {{ animals[0] }} and {{ animals[1] }}.
+    {% endif %}
+    {% if animals.__len__() == 1 %}
+        {{ animals[0] }}.
+    {% endif %}
+{% endblock %}

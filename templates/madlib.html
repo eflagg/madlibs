@@ -1,21 +1,14 @@
-<!doctype html>
-<html>
-<head>
-  <title>Your Madlib Story</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Your Madlib Story{% endblock %}
+
+{% block content %}
     There once was a {{ color }} {{ noun }} sitting in the Hackbright Lab. When {{ person }}<br> 
     went to pick it up, it burst into flames in a totally {{ adjective }} way. {{ person }}<br>
 
-    {{ verb }} away.
+    {{ verb }} away when they saw the 
+    {% for animal in animals[:-1] %}
+        {{ animal }},
+    {% endfor %} 
+    and {{ animals[-1] }}.
     
-    <ul>
-
-    {% for animal in animals %}
-        <li>{{ animal }}</li>
-    {% endfor %}
-
-    </ul>
-    
-</body>
-</html>
+{% endblock %}
